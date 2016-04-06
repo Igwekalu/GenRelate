@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">GenRelate</string>
+    <string name="large_text">"the long story"</string>
+    <string name="genre_choice">GenreInput</string>
+    <string name="action_settings">Settings</string>
+    <string name="pick_genre">Pick A Music Genre!</string>
+</resources>
