@@ -26,6 +26,7 @@ public class Genre extends ParseObject {
 
     public Genre(String id){
         mId = UUID.randomUUID();
+        mGenreName =id;
     }
 
 
