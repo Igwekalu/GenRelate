@@ -2,17 +2,23 @@ package com.example.igweigwe_kalu.genrelate;
 
 import android.widget.Button;
 
+import com.parse.ParseClassName;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
 import java.util.UUID;
 
 /**
  * Created by igweigwe-kalu on 4/3/16.
  */
-public class Genre {
+@ParseClassName("Genre")
+public class Genre extends ParseObject {
 
     private UUID mId;
     private String mGenreName;
     private int mGenreId;
     private Button mGenreButton;
+
 
     public Genre(){
         mGenreName = getGenreName();
@@ -33,6 +39,9 @@ public class Genre {
 
     public void setmGenreName(String nameId){
         mGenreName = nameId;
+    }
+    public static ParseQuery<Genre> getQuery() {
+        return ParseQuery.getQuery(Genre.class);
     }
 
 

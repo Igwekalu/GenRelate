@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,10 @@ import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.Toast;
 
+import com.parse.ParseException;
+import com.parse.ParseQuery;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -63,14 +68,33 @@ public void updateUI(){
 
     private class genreHolder extends RecyclerView.ViewHolder{
         public Button mGenreButton;
+        public Genre mGenre;
 
         public genreHolder(View itemView){
             super(itemView);
             mGenreButton = (Button)itemView.findViewById(R.id.genrebutton);
 
         }
+        public void bindGenre(Genre genreBind){
+            mGenreList = new ArrayList<Genre>();
+            final ParseQuery<Genre> query = Genre.getQuery();
+            query.orderByAscending("GenreName");
+            try {
+                List<Genre> queryResults = query.find();
+                for (Genre genre : queryResults) {
+                    mGenreList.add(new Genre(genre.getGenreName()));
+                }
+            }
+            catch (ParseException e){
+                Log.d("error", "didn't work" + e.getMessage());
+            }
+            String mGName ="";
+            mGenre = genreBind;
+            if(mGName == null){
+                mGenreButton.setText(mGenre.getGenreName());
+            }
 
-        //public bind
+        }
 
     }
     private class genreAdapter extends RecyclerView.Adapter<genreHolder>{
@@ -148,7 +172,8 @@ public void updateUI(){
 
             Genre genre;
             genre  = mGenreLists.get(position);
-            holder.mGenreButton.setText("Genre: " + genre.getGenreId());
+            //holder.mGenreButton.setText("Genre: " + genre.getGenreId());
+            holder.bindGenre(genre);
 
         }
 
