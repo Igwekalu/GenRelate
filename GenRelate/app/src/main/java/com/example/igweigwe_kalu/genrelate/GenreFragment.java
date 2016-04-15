@@ -15,6 +15,7 @@ import android.widget.ListAdapter;
 import android.widget.Toast;
 
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
 import java.util.ArrayList;
@@ -58,6 +59,7 @@ public void updateUI(){
 
     genreLab = new genreLab(this.getContext());
     List<Genre> allGenres = genreLab.getResults();
+    mGenreList= allGenres;
 
     String string1 = String.valueOf(allGenres.size());
     Toast.makeText(getActivity(), string1,
@@ -68,31 +70,10 @@ public void updateUI(){
 
     private class genreHolder extends RecyclerView.ViewHolder{
         public Button mGenreButton;
-        public Genre mGenre;
 
         public genreHolder(View itemView){
             super(itemView);
             mGenreButton = (Button)itemView.findViewById(R.id.genrebutton);
-
-        }
-        public void bindGenre(Genre genreBind){
-            mGenreList = new ArrayList<Genre>();
-            final ParseQuery<Genre> query = Genre.getQuery();
-            query.orderByAscending("GenreName");
-            try {
-                List<Genre> queryResults = query.find();
-                for (Genre genre : queryResults) {
-                    mGenreList.add(new Genre(genre.getGenreName()));
-                }
-            }
-            catch (ParseException e){
-                Log.d("error", "didn't work" + e.getMessage());
-            }
-            String mGName ="";
-            mGenre = genreBind;
-            if(mGName == null){
-                mGenreButton.setText(mGenre.getGenreName());
-            }
 
         }
 
@@ -172,8 +153,7 @@ public void updateUI(){
 
             Genre genre;
             genre  = mGenreLists.get(position);
-            //holder.mGenreButton.setText("Genre: " + genre.getGenreId());
-            holder.bindGenre(genre);
+            holder.mGenreButton.setText(genre.getGenreName());
 
         }
 

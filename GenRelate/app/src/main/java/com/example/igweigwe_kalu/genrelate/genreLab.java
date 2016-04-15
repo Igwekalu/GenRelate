@@ -18,7 +18,7 @@ import java.util.List;
 public class genreLab {
 
     private static genreLab sgenreLab;
-    private List<Genre> mGenreList;
+    public List<Genre> mGenreList;
 
 
     public static genreLab get(Context context) {
@@ -31,66 +31,34 @@ public class genreLab {
     }
 
     public genreLab(Context context) {
-        mGenreList = new ArrayList<>(getResults());
-        for (int i = 0; i < mGenreList.size();i++){
-            Genre genre = new Genre();
-            genre.setmGenreName(mGenreList.get(i).getGenreName());
-        }
 
-
-        //Testing to populate list
-        /*int i = 0;
         mGenreList = new ArrayList<>(getResults());
 
-        while (i != 15) {
-            //for (i = 1; i < mGenreList.size(); i++);{
-            System.out.println("b: " + mGenreList.size());
-            Genre genre = new Genre();
-            genre.setmGenreId(i);
-            genre.setmGenreName("Genre: " + i);
-            if (mGenreList.size() == 0) {
-                mGenreList.add(genre);
-                i++;
-            } else {
-                mGenreList.add(i, genre);
-                i++;
-            }
-        }*/
+
     }
 
     public List<Genre> getResults() {
 
         mGenreList = new ArrayList<Genre>();
 
-        final ParseQuery<ParseObject> query = ParseQuery.getQuery("GenreNames");
+        ParseQuery query = new ParseQuery("GenreNames");
         query.orderByAscending("GenreName");
-        query.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> objects, ParseException e) {
-                if (e == null) {
-                    for (ParseObject genre : objects) {
-                        Genre genre2 = new Genre((String) genre.get("GenreName"));
-                        mGenreList.add(genre2);
-                    }
-                } else {
-                    Log.d("error", "didn't work" + e.getMessage());
-                }
-            }
-        /*try {
-            List<Genre> queryResults = query.find();
-
+        try{
+              List<Genre> queryResult = query.find();
+            for (ParseObject newGenre : queryResult){
+                mGenreList.add(new Genre(newGenre.getString("GenreName")));
             }
         }
         catch (ParseException e){
             Log.d("error", "didn't work" + e.getMessage());
         }
-        if(mGenreList == null){
-            mGenreList = new ArrayList<>(100);
+
+        System.out.println("a: " + mGenreList.size());
+        for (int i = 0; i < mGenreList.size();i++){
+            Genre genre = new Genre();
+            genre.setmGenreName(mGenreList.get(i).getGenreName());
         }
+   return mGenreList;
 
-        System.out.println("a: " + mGenreList.size());*/
-
-        });
-        return mGenreList;
     }
 }
