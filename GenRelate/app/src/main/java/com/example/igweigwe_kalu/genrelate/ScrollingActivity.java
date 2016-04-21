@@ -18,8 +18,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public abstract class ScrollingActivity extends FragmentActivity {
-
+public abstract class ScrollingActivity extends FragmentActivity implements View.OnClickListener {
 
 
     protected abstract Fragment createFragment();
@@ -56,6 +55,14 @@ public abstract class ScrollingActivity extends FragmentActivity {
         GenreName.put("GenreName", "Instrumental");
 
         GenreName.saveInBackground();*/
+
+        //OnClickListener for all buttons
+
+
     }
 
+    @Override
+    public void onClick(View v) {
+        setContentView(R.layout.selection_menu);
+    }
 }

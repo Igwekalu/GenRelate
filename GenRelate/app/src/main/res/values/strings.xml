@@ -4,4 +4,8 @@
     <string name="genre_choice">GenreInput</string>
     <string name="action_settings">Settings</string>
     <string name="pick_genre">Pick A Music Genre!</string>
+    <string name="history_button"> Learn Your History!</string>
+    <string name="note_button">Follow the Notes</string>
+    <string name="instrument_button">Which Instrument is That?</string>
+    <string name="note_explanation">Which Notes Are These?</string>
 </resources>
