@@ -1,5 +1,7 @@
 package com.example.igweigwe_kalu.genrelate;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -17,10 +19,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.Toast;
 
-public abstract class ScrollingActivity extends FragmentActivity implements View.OnClickListener {
+import java.util.ServiceConfigurationError;
 
+public abstract class ScrollingActivity extends FragmentActivity {
 
+    private Button mReggaeButton;
     protected abstract Fragment createFragment();
 
     @Override
@@ -45,6 +51,8 @@ public abstract class ScrollingActivity extends FragmentActivity implements View
         Parse.initialize(this, "QTGRlLMbhjTx5YpoGMx1KmdpO00CLmtWfj1jpgxL",
                 "1dFGhppGtI3g20RJprvIjJbmP4F4KXJ5jLK53cEe");
 
+        //mReggaeButton = new Button()
+
         //Testing and Adding Genre Classes to Parse
 
         /*ParseObject testObject = new ParseObject("TestObject");
@@ -56,13 +64,9 @@ public abstract class ScrollingActivity extends FragmentActivity implements View
 
         GenreName.saveInBackground();*/
 
-        //OnClickListener for all buttons
-
 
     }
 
-    @Override
-    public void onClick(View v) {
-        setContentView(R.layout.selection_menu);
-    }
+
+
 }

@@ -8,4 +8,7 @@
     <string name="note_button">Follow the Notes</string>
     <string name="instrument_button">Which Instrument is That?</string>
     <string name="note_explanation">Which Notes Are These?</string>
+    <string name="history_explanation"> Learn Your History</string>
+    <string name="instrument_explanation">"@instrument"</string>
+
 </resources>

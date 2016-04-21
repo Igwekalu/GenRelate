@@ -1,5 +1,6 @@
 package com.example.igweigwe_kalu.genrelate;
 
+import android.content.Intent;
 import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -24,7 +25,9 @@ import java.util.List;
 /**
  * Created by igweigwe-kalu on 2/21/16.
  */
-public class GenreFragment extends Fragment{
+public class GenreFragment extends Fragment {
+
+    //implements View.OnClickListener
 
     public RecyclerView mGenreChoiceRecylcer;
     public genreAdapter mGenreAdapter;
@@ -49,36 +52,45 @@ public class GenreFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_genrelist, container, false);
 
-        mGenreChoiceRecylcer = (RecyclerView)view.findViewById(R.id.genre_recycler_view);
+        mGenreChoiceRecylcer = (RecyclerView) view.findViewById(R.id.genre_recycler_view);
         mGenreChoiceRecylcer.setLayoutManager(new LinearLayoutManager(getActivity()));
         updateUI();
         return view;
     }
 
-public void updateUI(){
+    public void updateUI() {
 
-    genreLab = new genreLab(this.getContext());
-    List<Genre> allGenres = genreLab.getResults();
-    mGenreList= allGenres;
+        genreLab = new genreLab(this.getContext());
+        List<Genre> allGenres = genreLab.getResults();
+        mGenreList = allGenres;
 
-    String string1 = String.valueOf(allGenres.size());
-    Toast.makeText(getActivity(), string1,
-            Toast.LENGTH_LONG).show();
-    mGenreAdapter = new genreAdapter(allGenres);
-    mGenreChoiceRecylcer.setAdapter(mGenreAdapter);
-}
+        String string1 = String.valueOf(allGenres.size());
+        Toast.makeText(getActivity(), string1,
+                Toast.LENGTH_LONG).show();
+        mGenreAdapter = new genreAdapter(allGenres);
+        mGenreChoiceRecylcer.setAdapter(mGenreAdapter);
+    }
 
-    private class genreHolder extends RecyclerView.ViewHolder{
+    private class genreHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public Button mGenreButton;
 
-        public genreHolder(View itemView){
+        public genreHolder(View itemView) {
             super(itemView);
-            mGenreButton = (Button)itemView.findViewById(R.id.genrebutton);
+            mGenreButton = (Button) itemView.findViewById(R.id.genrebutton);
+            mGenreButton.setOnClickListener(this);
+
+        }
+
+        @Override
+        public void onClick(View v) {
+            Intent i = SelectionActivity.newIntent(getActivity());
+            startActivity(i);
 
         }
 
     }
-    private class genreAdapter extends RecyclerView.Adapter<genreHolder>{
+
+    private class genreAdapter extends RecyclerView.Adapter<genreHolder> {
 
         private List<Genre> mGenreLists;
 
@@ -152,7 +164,7 @@ public void updateUI(){
         public void onBindViewHolder(genreHolder holder, int position) {
 
             Genre genre;
-            genre  = mGenreLists.get(position);
+            genre = mGenreLists.get(position);
             holder.mGenreButton.setText(genre.getGenreName());
 
         }
@@ -175,7 +187,7 @@ public void updateUI(){
         @Override
         public genreHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
-            View view = layoutInflater.inflate(R.layout.fragment_genrebutton,parent,false);
+            View view = layoutInflater.inflate(R.layout.fragment_genrebutton, parent, false);
             return new genreHolder(view);
         }
 

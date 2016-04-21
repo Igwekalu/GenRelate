@@ -27,12 +27,19 @@ public class Genre extends ParseObject {
     public Genre(String id){
         mId = UUID.randomUUID();
         mGenreName =id;
+
+    }
+
+    public Genre(String id, int gId){
+        mId = UUID.randomUUID();
+        mGenreName =id;
+        mGenreId = gId;
     }
 
 
     public int getGenreId(){return mGenreId;}
 
-    public void setmGenreId(int genreId){
+    public void setGenreId(int genreId){
         mGenreId = genreId;
     }
 

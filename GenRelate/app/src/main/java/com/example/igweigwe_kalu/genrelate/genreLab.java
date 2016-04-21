@@ -38,7 +38,7 @@ public class genreLab {
     }
 
     public List<Genre> getResults() {
-
+        //int i =1;
         mGenreList = new ArrayList<Genre>();
 
         ParseQuery query = new ParseQuery("GenreNames");
@@ -57,6 +57,7 @@ public class genreLab {
         for (int i = 0; i < mGenreList.size();i++){
             Genre genre = new Genre();
             genre.setmGenreName(mGenreList.get(i).getGenreName());
+            genre.setGenreId(i);
         }
    return mGenreList;
 
