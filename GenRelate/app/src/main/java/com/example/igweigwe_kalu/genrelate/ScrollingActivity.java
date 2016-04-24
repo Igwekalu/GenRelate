@@ -46,12 +46,11 @@ public abstract class ScrollingActivity extends FragmentActivity {
 
         //Enabling the use of Parse and initializing the connection
         //between the server and the app
-        Parse.enableLocalDatastore(this);
+        /*Parse.enableLocalDatastore(this);
         ParseObject.registerSubclass(Genre.class);
         Parse.initialize(this, "QTGRlLMbhjTx5YpoGMx1KmdpO00CLmtWfj1jpgxL",
                 "1dFGhppGtI3g20RJprvIjJbmP4F4KXJ5jLK53cEe");
 
-        //mReggaeButton = new Button()
 
         //Testing and Adding Genre Classes to Parse
 
