@@ -46,7 +46,6 @@ public class SelectionActivity extends Activity{
                 mInstrumentButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //setContentView(R.layout.instrument_view);
                         Intent i = photoActivity.newIntent(SelectionActivity.this);
                         startActivity(i);
                     }
