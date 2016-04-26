@@ -121,7 +121,7 @@ public class photoFragment extends Fragment {
         @Override
         public void onBindViewHolder(PhotoHolder photoHolder, int position) {
             GalleryItem galleryItem = mGalleryItems.get(position);
-            Drawable placeholder = getResources().getDrawable(R.drawable.bill_up_close);
+            Drawable placeholder = getResources().getDrawable(R.drawable.genrelateemblemcolor);
             photoHolder.bindDrawable(placeholder);
             mPhotoDownloader.queueThumbnail(photoHolder,galleryItem.getmURL());
         }
