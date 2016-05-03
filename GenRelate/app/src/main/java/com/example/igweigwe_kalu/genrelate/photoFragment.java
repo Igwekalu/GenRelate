@@ -32,6 +32,7 @@ public class photoFragment extends Fragment {
     private List<GalleryItem> mItems = new ArrayList<>();
     private photoDownloader<PhotoHolder> mPhotoDownloader;
 
+
     public static photoFragment newInstance() {
         return new photoFragment();
     }
@@ -94,7 +95,7 @@ public class photoFragment extends Fragment {
 
         public PhotoHolder(View itemView) {
             super(itemView);
-
+            GenreFragment.genreHolder genreHolder = new GenreFragment().new genreHolder(itemView);
             mItemImageView = (ImageView)itemView.findViewById(R.id.fragment_instrument);
         }
 
@@ -136,7 +137,21 @@ public class photoFragment extends Fragment {
         @Override
         protected List<GalleryItem> doInBackground(Void... params) {
 
-               return new FlickrFetchr().fetchItems();
+            GenreFragment genreFragment = new GenreFragment();
+            String query ="";
+            if(genreFragment.currentGenre == "Reggae") {
+
+                query = "Reggae"; // Just for testing
+            }
+            if (genreFragment.currentGenre == "Jazz"){
+                query = "Jazz";
+            }
+
+            if (query == null) {
+                return new FlickrFetchr().fetchRecentPhotos();
+            } else {
+                return new FlickrFetchr().searchPhotos(query);
+            }
         }
         @Override
         protected void onPostExecute(List<GalleryItem> items) {

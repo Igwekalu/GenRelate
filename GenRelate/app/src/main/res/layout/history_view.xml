@@ -15,5 +15,6 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/history_image"
+        android:src="@drawable/history_reggae"
         android:layout_gravity="center_horizontal" />
 </LinearLayout>

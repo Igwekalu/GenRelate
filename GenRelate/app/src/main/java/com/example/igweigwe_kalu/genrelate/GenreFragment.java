@@ -33,7 +33,8 @@ public class GenreFragment extends Fragment {
     public genreAdapter mGenreAdapter;
     public List<Genre> mGenreList;
     private genreLab genreLab;
-    private Button mGenreButton;
+    public CharSequence currentGenre;
+    private Boolean clicked;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -44,7 +45,11 @@ public class GenreFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+    }
 
+
+    private CharSequence currentGenre(){
+        return currentGenre;
     }
 
     @Nullable
@@ -63,15 +68,11 @@ public class GenreFragment extends Fragment {
         genreLab = new genreLab(this.getContext());
         List<Genre> allGenres = genreLab.getResults();
         mGenreList = allGenres;
-
-        String string1 = String.valueOf(allGenres.size());
-        Toast.makeText(getActivity(), string1,
-                Toast.LENGTH_LONG).show();
         mGenreAdapter = new genreAdapter(allGenres);
         mGenreChoiceRecylcer.setAdapter(mGenreAdapter);
     }
 
-    private class genreHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class genreHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public Button mGenreButton;
 
         public genreHolder(View itemView) {
@@ -83,10 +84,13 @@ public class GenreFragment extends Fragment {
 
         @Override
         public void onClick(View v) {
+            currentGenre = mGenreButton.getText();
+            Toast.makeText(getActivity(), currentGenre,
+                    Toast.LENGTH_LONG).show();
             Intent i = SelectionActivity.newIntent(getActivity());
             startActivity(i);
-
         }
+
 
     }
 

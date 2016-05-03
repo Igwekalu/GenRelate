@@ -53,11 +53,12 @@ public class genreLab {
             Log.d("error", "didn't work" + e.getMessage());
         }
 
-        System.out.println("a: " + mGenreList.size());
+
         for (int i = 0; i < mGenreList.size();i++){
             Genre genre = new Genre();
             genre.setmGenreName(mGenreList.get(i).getGenreName());
             genre.setGenreId(i);
+            System.out.println("GenreId " + genre.getGenreId());
         }
    return mGenreList;
 

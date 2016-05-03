@@ -9,5 +9,6 @@
         android:text="@string/genre_choice"
         android:id="@+id/genrebutton"
         android:enabled="true"
-        android:clickable="true" />
+        android:clickable="true"
+        android:textColor="#fefefe" />
 </RelativeLayout>

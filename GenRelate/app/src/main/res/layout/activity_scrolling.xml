@@ -22,7 +22,8 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/buttonRecycler">
+        android:id="@+id/buttonRecycler"
+        android:background="@drawable/genrelateemblemcolor">
 
         <LinearLayout
             android:layout_width="match_parent"

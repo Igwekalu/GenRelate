@@ -19,13 +19,15 @@ public class SelectionActivity extends Activity{
     public Button mHistoryButton;
     public Button mNotesButton;
     public Button mInstrumentButton;
+    private GenreSound mGenreSound;
+    private Sound mSound;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.selection_menu);
-
+        mGenreSound = new GenreSound(this);
         mHistoryButton = (Button)findViewById(R.id.history_button);
         mHistoryButton.setOnClickListener(new View.OnClickListener() {
             @Override

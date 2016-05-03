@@ -26,7 +26,6 @@ import java.util.ServiceConfigurationError;
 
 public abstract class ScrollingActivity extends FragmentActivity {
 
-    private Button mReggaeButton;
     protected abstract Fragment createFragment();
 
     @Override
@@ -44,6 +43,7 @@ public abstract class ScrollingActivity extends FragmentActivity {
                     .commit();
         }
 
+
         //Enabling the use of Parse and initializing the connection
         //between the server and the app
         /*Parse.enableLocalDatastore(this);
@@ -59,7 +59,7 @@ public abstract class ScrollingActivity extends FragmentActivity {
         testObject.saveInBackground();*/
 
         /*ParseObject GenreName = new ParseObject("GenreNames");
-        GenreName.put("GenreName", "Instrumental");
+        GenreName.put("GenreName", "BaileFunk");
 
         GenreName.saveInBackground();*/
 
