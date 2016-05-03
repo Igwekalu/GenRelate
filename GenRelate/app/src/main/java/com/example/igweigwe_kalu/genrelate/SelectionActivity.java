@@ -3,6 +3,8 @@ package com.example.igweigwe_kalu.genrelate;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -19,15 +21,15 @@ public class SelectionActivity extends Activity{
     public Button mHistoryButton;
     public Button mNotesButton;
     public Button mInstrumentButton;
-    private GenreSound mGenreSound;
-    private Sound mSound;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.selection_menu);
-        mGenreSound = new GenreSound(this);
+
+
         mHistoryButton = (Button)findViewById(R.id.history_button);
         mHistoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,7 +42,8 @@ public class SelectionActivity extends Activity{
                 mNotesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setContentView(R.layout.notes_view);
+                Intent i = SoundActivity.newIntent(SelectionActivity.this);
+                startActivity(i);
             }
 
         });

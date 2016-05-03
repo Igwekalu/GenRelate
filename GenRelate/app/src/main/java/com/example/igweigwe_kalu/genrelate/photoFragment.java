@@ -31,6 +31,7 @@ public class photoFragment extends Fragment {
     private static final String TAG = "photoFragment";
     private List<GalleryItem> mItems = new ArrayList<>();
     private photoDownloader<PhotoHolder> mPhotoDownloader;
+    public String currentGenre;
 
 
     public static photoFragment newInstance() {
@@ -40,6 +41,8 @@ public class photoFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        GenreFragment genreFragment = new GenreFragment();
+        currentGenre = genreFragment.currentGenre;
         setRetainInstance(true);
         new FetchItemsTask().execute();
        android.os.Handler responseHandler = new android.os.Handler();
@@ -137,15 +140,8 @@ public class photoFragment extends Fragment {
         @Override
         protected List<GalleryItem> doInBackground(Void... params) {
 
-            GenreFragment genreFragment = new GenreFragment();
-            String query ="";
-            if(genreFragment.currentGenre == "Reggae") {
 
-                query = "Reggae"; // Just for testing
-            }
-            if (genreFragment.currentGenre == "Jazz"){
-                query = "Jazz";
-            }
+            String query = currentGenre;
 
             if (query == null) {
                 return new FlickrFetchr().fetchRecentPhotos();

@@ -33,7 +33,7 @@ public class GenreFragment extends Fragment {
     public genreAdapter mGenreAdapter;
     public List<Genre> mGenreList;
     private genreLab genreLab;
-    public CharSequence currentGenre;
+    public String currentGenre;
     private Boolean clicked;
 
     @Override
@@ -84,7 +84,7 @@ public class GenreFragment extends Fragment {
 
         @Override
         public void onClick(View v) {
-            currentGenre = mGenreButton.getText();
+            currentGenre = mGenreButton.getText().toString();
             Toast.makeText(getActivity(), currentGenre,
                     Toast.LENGTH_LONG).show();
             Intent i = SelectionActivity.newIntent(getActivity());
