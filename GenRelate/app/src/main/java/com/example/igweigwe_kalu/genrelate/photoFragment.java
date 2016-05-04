@@ -41,8 +41,13 @@ public class photoFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        GenreFragment genreFragment = new GenreFragment();
-        currentGenre = genreFragment.currentGenre;
+
+        Bundle extras = getActivity().getIntent().getExtras();
+        if (extras != null) {
+            String value = extras.getString("thisGenre");
+            currentGenre = value;
+        }
+
         setRetainInstance(true);
         new FetchItemsTask().execute();
        android.os.Handler responseHandler = new android.os.Handler();
@@ -98,7 +103,7 @@ public class photoFragment extends Fragment {
 
         public PhotoHolder(View itemView) {
             super(itemView);
-            GenreFragment.genreHolder genreHolder = new GenreFragment().new genreHolder(itemView);
+            //GenreFragment.genreHolder genreHolder = new GenreFragment().new genreHolder(itemView);
             mItemImageView = (ImageView)itemView.findViewById(R.id.fragment_instrument);
         }
 
@@ -141,7 +146,7 @@ public class photoFragment extends Fragment {
         protected List<GalleryItem> doInBackground(Void... params) {
 
 
-            String query = currentGenre;
+            String query = currentGenre + " Music";
 
             if (query == null) {
                 return new FlickrFetchr().fetchRecentPhotos();

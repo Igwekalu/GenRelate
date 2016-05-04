@@ -21,12 +21,18 @@ public class SelectionActivity extends Activity{
     public Button mHistoryButton;
     public Button mNotesButton;
     public Button mInstrumentButton;
+    public String currentGenre;
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String value = extras.getString("thisGenre");
+            currentGenre = value;
+        }
         setContentView(R.layout.selection_menu);
 
 
@@ -43,6 +49,7 @@ public class SelectionActivity extends Activity{
             @Override
             public void onClick(View v) {
                 Intent i = SoundActivity.newIntent(SelectionActivity.this);
+                i.putExtra("thisGenre", currentGenre);
                 startActivity(i);
             }
 
@@ -52,6 +59,7 @@ public class SelectionActivity extends Activity{
                     @Override
                     public void onClick(View v) {
                         Intent i = photoActivity.newIntent(SelectionActivity.this);
+                        i.putExtra("thisGenre", currentGenre);
                         startActivity(i);
                     }
 

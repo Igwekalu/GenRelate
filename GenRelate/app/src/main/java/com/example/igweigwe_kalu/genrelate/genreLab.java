@@ -58,7 +58,6 @@ public class genreLab {
             Genre genre = new Genre();
             genre.setmGenreName(mGenreList.get(i).getGenreName());
             genre.setGenreId(i);
-            System.out.println("GenreId " + genre.getGenreId());
         }
    return mGenreList;
 

@@ -34,7 +34,7 @@ public class GenreFragment extends Fragment {
     public List<Genre> mGenreList;
     private genreLab genreLab;
     public String currentGenre;
-    private Boolean clicked;
+    public String clicked;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -47,10 +47,6 @@ public class GenreFragment extends Fragment {
 
     }
 
-
-    private CharSequence currentGenre(){
-        return currentGenre;
-    }
 
     @Nullable
     @Override
@@ -85,9 +81,9 @@ public class GenreFragment extends Fragment {
         @Override
         public void onClick(View v) {
             currentGenre = mGenreButton.getText().toString();
-            Toast.makeText(getActivity(), currentGenre,
-                    Toast.LENGTH_LONG).show();
+
             Intent i = SelectionActivity.newIntent(getActivity());
+            i.putExtra("thisGenre", currentGenre);
             startActivity(i);
         }
 

@@ -25,10 +25,13 @@ public class SoundActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        GenreFragment genreFragment = new GenreFragment();
-        currentSound = genreFragment.currentGenre;
-        super.onCreate(savedInstanceState);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String value = extras.getString("thisGenre");
+            currentSound = value;
+        }
         setContentView(R.layout.notes_view);
+        super.onCreate(savedInstanceState);
         mGenreSound = new SoundPool(maxVolume, AudioManager.STREAM_MUSIC,0);
         loadSound();
     }
@@ -44,7 +47,7 @@ public class SoundActivity extends Activity {
     }
 
     public static Intent newIntent(Context packageContext) {
-        Intent i = new Intent(packageContext, photoActivity.class);
+        Intent i = new Intent(packageContext, SoundActivity.class);
         return i;
     }
 }
